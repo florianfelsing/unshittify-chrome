@@ -2,18 +2,12 @@
   {
     "id": 1,
     "priority": 1,
-    "action": { "type": "redirect", "redirect": { "url": "https://www.reddit.com/new/" } },
+    "action": {
+      "type": "redirect",
+      "redirect": { "url": "https://www.reddit.com/new" }
+    },
     "condition": {
-      "urlFilter": "https://www.reddit.com/",
-      "resourceTypes": ["main_frame"]
-    }
-  },
-  {
-    "id": 2,
-    "priority": 1,
-    "action": { "type": "redirect", "redirect": { "url": "https://reddit.com/new/" } },
-    "condition": {
-      "urlFilter": "https://reddit.com/",
+      "regexFilter": "^https?://(www\\.)?reddit\\.com/(?:[?#]|$)",
       "resourceTypes": ["main_frame"]
     }
   }
