@@ -1,16 +1,15 @@
-const REDIRECT_URL = "https://www.reddit.com/new";
-const HOMEPAGE_RE  = /^https?:\/\/(?:www\.)?reddit\.com\/?(?:[?#].*|$)/;
+// Redirect Reddit SPA root views (front page or any /r/<sub>) to /new
+const PATTERN = /^https?:\/\/(?:www\.)?reddit\.com(?:\/r\/[^\/]+)?\/?(?:[?#]|$)/;
 
-// Fires when Reddit’s React front-end calls history.pushState/replaceState
 chrome.webNavigation.onHistoryStateUpdated.addListener(
   ({ tabId, url }) => {
-    if (HOMEPAGE_RE.test(url)) {
-      // One hop; regex doesn’t match /new so no redirect loop
-      chrome.tabs.update(tabId, { url: REDIRECT_URL });
+    if (PATTERN.test(url)) {
+      const target = url.replace(
+        /^https?:\/\/(?:www\.)?reddit\.com((?:\/r\/[^\/]+)?)\/?(?:[?#].*|$)/,
+        'https://www.reddit.com$1/new'
+      );
+      chrome.tabs.update(tabId, { url: target });
     }
   },
-  {
-    // Keeps the service-worker asleep for every other site
-    url: [{ hostSuffix: "reddit.com" }]
-  }
+  { url: [{ hostSuffix: "reddit.com" }] }
 );

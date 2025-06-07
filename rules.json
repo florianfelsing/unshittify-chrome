@@ -4,10 +4,12 @@
     "priority": 1,
     "action": {
       "type": "redirect",
-      "redirect": { "url": "https://www.reddit.com/new" }
+      "redirect": {
+        "regexSubstitution": "https://www.reddit.com\\1/new"
+      }
     },
     "condition": {
-      "regexFilter": "^https?://(www\\.)?reddit\\.com/(?:[?#]|$)",
+      "regexFilter": "^https?://(?:www\\.)?reddit\\.com((?:/r/[^/]+)?)/?(?:[?#]|$)",
       "resourceTypes": ["main_frame"]
     }
   }
