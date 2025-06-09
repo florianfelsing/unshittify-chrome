@@ -15,6 +15,13 @@
   "background": {
     "service_worker": "scripts/background.js"
   },
+  "content_scripts": [
+    {
+      "matches": ["*://*.reddit.com/*"],
+      "css": ["content/reddit.css"],
+      "run_at": "document_start"
+    }
+  ],
   "declarative_net_request": {
     "rule_resources": [
       {

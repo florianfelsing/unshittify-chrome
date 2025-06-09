@@ -1,0 +1,2 @@
+/* Description: Custom CSS for Reddit to hide the inbox icon in the header */
+span[data-part="inbox"] { display: none !important; }
