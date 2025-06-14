@@ -1,2 +1,5 @@
-/* Description: Custom CSS for Reddit to hide the inbox icon in the header */
+/* Hide the inbox icon in the header */
 span[data-part="inbox"] { display: none !important; }
+
+/* Hide thumbnails on Home and subreddit feeds */
+[slot="thumbnail"] { display: none !important; }
