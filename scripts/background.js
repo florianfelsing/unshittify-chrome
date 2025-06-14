@@ -6,7 +6,7 @@ chrome.webNavigation.onHistoryStateUpdated.addListener(
     if (PATTERN.test(url)) {
       const target = url.replace(
         /^https?:\/\/(?:www\.)?reddit\.com((?:\/r\/[^\/]+)?)\/?(?:[?#].*|$)/,
-        'https://www.reddit.com$1/new'
+        'https://www.reddit.com$1/new/?feedViewType=compactView'
       );
       chrome.tabs.update(tabId, { url: target });
     }
